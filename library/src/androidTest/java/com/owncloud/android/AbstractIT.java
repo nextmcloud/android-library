@@ -27,6 +27,7 @@
 package com.owncloud.android;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assume.assumeTrue;
 
 import android.content.Context;
 import android.net.Uri;
@@ -47,7 +48,10 @@ import com.owncloud.android.lib.resources.e2ee.ToggleEncryptionRemoteOperation;
 import com.owncloud.android.lib.resources.files.ReadFolderRemoteOperation;
 import com.owncloud.android.lib.resources.files.RemoveFileRemoteOperation;
 import com.owncloud.android.lib.resources.files.model.RemoteFile;
+import com.owncloud.android.lib.resources.status.GetCapabilitiesRemoteOperation;
 import com.owncloud.android.lib.resources.status.GetStatusRemoteOperation;
+import com.owncloud.android.lib.resources.status.OCCapability;
+import com.owncloud.android.lib.resources.status.OwnCloudVersion;
 
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -276,5 +280,11 @@ public abstract class AbstractIT {
         FileUtils.copyInputStreamToFile(inputStream, temp);
 
         return temp;
+    }
+
+    public static void onlyOnMin(OwnCloudVersion version) {
+        OCCapability ocCapability = (OCCapability) new GetCapabilitiesRemoteOperation()
+                .execute(nextcloudClient).getSingleData();
+        assumeTrue(ocCapability.getVersion().isNewerOrEqual(version));
     }
 }

@@ -23,23 +23,20 @@
 package com.nextcloud.android.lib.resources.search
 
 import com.owncloud.android.AbstractIT
-import com.owncloud.android.lib.resources.status.GetCapabilitiesRemoteOperation
-import com.owncloud.android.lib.resources.status.OCCapability
-import com.owncloud.android.lib.resources.status.OwnCloudVersion
+import com.owncloud.android.lib.resources.status.OwnCloudVersion.nextcloud_20
 import org.junit.Assert
-import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
-import org.junit.Assume.assumeTrue
+import org.junit.Before
 import org.junit.Test
 
 class SearchProvidersRemoteOperationIT : AbstractIT() {
+    @Before
+    fun before() {
+        onlyOnMin(nextcloud_20)
+    }
+
     @Test
     fun getSearchProviders() {
-        // only on NC20+
-        val ocCapability = GetCapabilitiesRemoteOperation()
-            .execute(nextcloudClient).singleData as OCCapability
-        assumeTrue(ocCapability.version.isNewerOrEqual(OwnCloudVersion.nextcloud_20))
-
         val result = nextcloudClient.execute(UnifiedSearchProvidersRemoteOperation())
         assertTrue(result.isSuccess)
 
@@ -49,18 +46,5 @@ class SearchProvidersRemoteOperationIT : AbstractIT() {
         assertTrue(providers.providers.isNotEmpty())
         Assert.assertNotNull(providers.providers.find { it.name == "Files" })
         Assert.assertNull(providers.providers.find { it.name == "RandomSearchProvider" })
-    }
-
-    @Test
-    fun getSearchProvidersOnOldServer() {
-        // only on < NC20
-        val ocCapability = GetCapabilitiesRemoteOperation()
-            .execute(nextcloudClient).singleData as OCCapability
-        assumeTrue(
-            ocCapability.version.isOlderThan(OwnCloudVersion.nextcloud_20)
-        )
-
-        val result = nextcloudClient.execute(UnifiedSearchProvidersRemoteOperation())
-        assertFalse(result.isSuccess)
     }
 }

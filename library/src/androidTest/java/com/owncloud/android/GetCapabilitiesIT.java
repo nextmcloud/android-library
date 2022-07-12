@@ -26,6 +26,12 @@
  */
 package com.owncloud.android;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
 import com.owncloud.android.lib.resources.status.CapabilityBooleanType;
 import com.owncloud.android.lib.resources.status.GetCapabilitiesRemoteOperation;
@@ -34,12 +40,6 @@ import com.owncloud.android.lib.resources.status.OCCapability;
 import com.owncloud.android.lib.resources.status.OwnCloudVersion;
 
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Class to test GetRemoteCapabilitiesOperation
@@ -127,9 +127,11 @@ public class GetCapabilitiesIT extends AbstractIT {
         assertTrue(capability.getFilesVersioning().isTrue());
         assertTrue(capability.getFilesUndelete().isTrue());
         assertNotNull(capability.getVersion());
-        assertFalse(capability.getEtag().isEmpty());
+        if (capability.getVersion().isNewerOrEqual(OwnCloudVersion.nextcloud_17)) {
+            assertFalse(capability.getEtag().isEmpty());
+            assertFalse(capability.getDirectEditingEtag().isEmpty());
+        }
         assertSame(CapabilityBooleanType.FALSE, capability.getRichDocuments());
-        assertFalse(capability.getDirectEditingEtag().isEmpty());
 
         // user status
         if (capability.getVersion().isNewerOrEqual(OwnCloudVersion.nextcloud_20)) {

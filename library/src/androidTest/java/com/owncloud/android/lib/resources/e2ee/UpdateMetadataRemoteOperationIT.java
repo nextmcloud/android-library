@@ -45,12 +45,7 @@ import org.junit.Test;
 public class UpdateMetadataRemoteOperationIT extends AbstractIT {
     @Test
     public void uploadAndModify() {
-        // tests only for NC19+
-        OCCapability capability = (OCCapability) new GetCapabilitiesRemoteOperation(null)
-                .execute(client)
-                .getSingleData();
-
-        assumeTrue(capability.getVersion().isNewerOrEqual(OwnCloudVersion.nextcloud_20));
+        onlyOnMin(OwnCloudVersion.nextcloud_19);
 
         // E2E server app checks for official NC client with >=3.13.0, 
         // and blocks all other clients, e.g. 3rd party apps using this lib

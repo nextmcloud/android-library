@@ -27,23 +27,15 @@
 package com.nextcloud.android.lib.resources.profile
 
 import com.owncloud.android.AbstractIT
-import com.owncloud.android.lib.resources.status.GetStatusRemoteOperation
 import com.owncloud.android.lib.resources.status.NextcloudVersion.Companion.nextcloud_23
-import com.owncloud.android.lib.resources.status.OwnCloudVersion
 import org.junit.Assert
-import org.junit.Assume
 import org.junit.Before
 import org.junit.Test
-import java.util.ArrayList
 
 class GetHoverCardRemoteOperationIT : AbstractIT() {
     @Before
     fun before() {
-        val result = GetStatusRemoteOperation(context).execute(client)
-        Assert.assertTrue(result.isSuccess)
-        val data = result.data as ArrayList<Any>
-        val ownCloudVersion = data[0] as OwnCloudVersion
-        Assume.assumeTrue(ownCloudVersion.isNewerOrEqual(nextcloud_23))
+        onlyOnMin(nextcloud_23)
     }
 
     @Test

@@ -26,13 +26,20 @@ import com.owncloud.android.AbstractIT
 import com.owncloud.android.lib.resources.files.CreateFolderRemoteOperation
 import com.owncloud.android.lib.resources.files.ReadFileRemoteOperation
 import com.owncloud.android.lib.resources.files.model.RemoteFile
+import com.owncloud.android.lib.resources.status.OwnCloudVersion
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 
 class UnifiedSearchRemoteOperationIT : AbstractIT() {
+    @Before
+    fun before() {
+        onlyOnMin(OwnCloudVersion.nextcloud_20)
+    }
+
     @Test
     fun filesSearchEmptySearch() {
         val result = UnifiedSearchRemoteOperation("files", "").execute(nextcloudClient)

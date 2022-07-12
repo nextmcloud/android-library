@@ -42,6 +42,7 @@ import com.owncloud.android.lib.common.OwnCloudClient;
 import com.owncloud.android.lib.common.OwnCloudClientFactory;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
 import com.owncloud.android.lib.resources.files.CreateFolderRemoteOperation;
+import com.owncloud.android.lib.resources.status.OwnCloudVersion;
 
 import org.junit.Test;
 
@@ -167,6 +168,8 @@ public class GetSharesRemoteOperationIT extends AbstractIT {
 
     @Test
     public void sharedWithMe() {
+        onlyOnMin(OwnCloudVersion.nextcloud_19);
+
         GetSharesRemoteOperation sut = new GetSharesRemoteOperation();
         GetSharesRemoteOperation sutSharedWithMe = new GetSharesRemoteOperation(true);
 

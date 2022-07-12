@@ -37,6 +37,7 @@ import com.owncloud.android.lib.resources.shares.CreateShareRemoteOperation;
 import com.owncloud.android.lib.resources.shares.OCShare;
 import com.owncloud.android.lib.resources.shares.ShareType;
 import com.owncloud.android.lib.resources.shares.ShareeUser;
+import com.owncloud.android.lib.resources.status.OwnCloudVersion;
 
 import org.junit.Test;
 
@@ -162,6 +163,8 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testShareToGroupSharees() {
+        onlyOnMin(OwnCloudVersion.nextcloud_17);
+
         // create & verify folder
         String path = "/testFolder/";
         assertTrue(new CreateFolderRemoteOperation(path, true).execute(client).isSuccess());
@@ -171,7 +174,7 @@ public class FileIT extends AbstractIT {
 
         // share folder
         assertTrue(new CreateShareRemoteOperation(path,
-                                                  ShareType.GROUP,
+                ShareType.GROUP,
                                                   "users",
                                                   false,
                                                   "",
@@ -197,6 +200,8 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testOneSharees() {
+        onlyOnMin(OwnCloudVersion.nextcloud_17);
+
         // create & verify folder
         String path = "/testFolder/";
         assertTrue(new CreateFolderRemoteOperation(path, true).execute(client).isSuccess());
@@ -206,7 +211,7 @@ public class FileIT extends AbstractIT {
 
         // share folder
         assertTrue(new CreateShareRemoteOperation(path,
-                                                  ShareType.USER,
+                ShareType.USER,
                                                   "user1",
                                                   false,
                                                   "",
@@ -232,6 +237,8 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testTwoShareesOnParent() {
+        onlyOnMin(OwnCloudVersion.nextcloud_17);
+
         // create & verify folder
         String path = "/testFolder/";
         assertTrue(new CreateFolderRemoteOperation(path, true).execute(client).isSuccess());
@@ -280,6 +287,8 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testTwoSharees() {
+        onlyOnMin(OwnCloudVersion.nextcloud_17);
+
         // create & verify folder
         String path = "/testFolder/";
         assertTrue(new CreateFolderRemoteOperation(path, true).execute(client).isSuccess());

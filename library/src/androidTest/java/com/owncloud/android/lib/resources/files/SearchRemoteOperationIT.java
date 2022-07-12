@@ -44,6 +44,7 @@ import com.owncloud.android.lib.resources.shares.CreateShareRemoteOperation;
 import com.owncloud.android.lib.resources.shares.ShareType;
 import com.owncloud.android.lib.resources.status.GetCapabilitiesRemoteOperation;
 import com.owncloud.android.lib.resources.status.OCCapability;
+import com.owncloud.android.lib.resources.status.OwnCloudVersion;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -416,6 +417,8 @@ public class SearchRemoteOperationIT extends AbstractIT {
 
     @Test
     public void testGallerySearch() throws IOException {
+        onlyOnMin(OwnCloudVersion.nextcloud_18);
+
         for (int i = 0; i < 10; i++) {
             String filePath = createFile("image" + i);
             String remotePath = "/image" + i + ".jpg";
