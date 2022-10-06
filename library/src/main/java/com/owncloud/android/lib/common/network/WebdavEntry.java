@@ -90,15 +90,22 @@ public class WebdavEntry {
     public static final String PROPERTY_QUOTA_USED_BYTES = "quota-used-bytes";
     public static final String PROPERTY_QUOTA_AVAILABLE_BYTES = "quota-available-bytes";
 
+    public static final String DIR_TYPE = "DIR";
+
     private static final String IS_ENCRYPTED = "1";
 
     private static final int CODE_PROP_NOT_FOUND = 404;
 
-    @Getter private String name;
-    @Getter private String path;
-    @Getter private String uri;
-    @Getter private String contentType;
-    @Getter private String eTag;
+    @Getter
+    private String name;
+    @Getter
+    private String path;
+    @Getter
+    private String uri;
+    @Getter
+    private String contentType;
+    @Getter
+    private String eTag;
     @Getter private String permissions;
     @Getter private String remoteId;
     @Getter private String trashbinOriginalLocation;
@@ -195,10 +202,10 @@ public class WebdavEntry {
             if (prop!= null) {
                 Object value = prop.getValue();
                 if (value != null) {
-                    contentType = "DIR";   // a specific attribute would be better,
-                    // but this is enough;
-                    // unless while we have no reason to distinguish
-                    // MIME types for folders
+                    contentType = DIR_TYPE;  // a specific attribute would be better,
+                                            // but this is enough;
+                                            // unless while we have no reason to distinguish
+                                            // MIME types for folders
                 }
             }
 
@@ -525,7 +532,7 @@ public class WebdavEntry {
     }
 
     public boolean isDirectory() {
-        return "DIR".equals(contentType);
+        return DIR_TYPE.equals(contentType);
     }
 
     private void resetData() {

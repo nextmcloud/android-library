@@ -1,22 +1,22 @@
 /* ownCloud Android Library is available under MIT license
  *   Copyright (C) 2015 ownCloud Inc.
- *   
+ *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
  *   in the Software without restriction, including without limitation the rights
  *   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *   copies of the Software, and to permit persons to whom the Software is
  *   furnished to do so, subject to the following conditions:
- *   
+ *
  *   The above copyright notice and this permission notice shall be included in
  *   all copies or substantial portions of the Software.
- *   
- *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+ *
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  *   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- *   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
- *   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
- *   BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN 
- *   ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+ *   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ *   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ *   BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ *   ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  *   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *   THE SOFTWARE.
  *
@@ -32,18 +32,16 @@ import com.owncloud.android.lib.resources.files.FileUtils;
 import com.owncloud.android.lib.resources.shares.ShareeUser;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Contains the data of a Remote File from a WebDavEntry.
  *
  * @author masensio
  */
-@Getter
-@Setter
 public class RemoteFile implements Parcelable, Serializable {
     /**
      * Generated - should be refreshed every time the class changes!!
@@ -85,7 +83,7 @@ public class RemoteFile implements Parcelable, Serializable {
 
     /**
      * Create new {@link RemoteFile} with given path.
-     *
+     * <p>
      * The path received must be URL-decoded. Path separator must be OCFile.PATH_SEPARATOR, and it must be the first character in 'path'.
      *
      * @param path The remote path of the file.
@@ -250,4 +248,242 @@ public class RemoteFile implements Parcelable, Serializable {
         return remoteId.substring(0, 8).replaceAll("^0*", "");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RemoteFile that = (RemoteFile) o;
+        return length == that.length && creationTimestamp == that.creationTimestamp && modifiedTimestamp == that.modifiedTimestamp && uploadTimestamp == that.uploadTimestamp && size == that.size && favorite == that.favorite && encrypted == that.encrypted && unreadCommentsCount == that.unreadCommentsCount && hasPreview == that.hasPreview && isLocked == that.isLocked && lockTimestamp == that.lockTimestamp && lockTimeout == that.lockTimeout && Objects.equals(remotePath, that.remotePath) && Objects.equals(mimeType, that.mimeType) && Objects.equals(etag, that.etag) && Objects.equals(permissions, that.permissions) && Objects.equals(remoteId, that.remoteId) && mountType == that.mountType && Objects.equals(ownerId, that.ownerId) && Objects.equals(ownerDisplayName, that.ownerDisplayName) && Objects.equals(note, that.note) && Arrays.equals(sharees, that.sharees) && Objects.equals(richWorkspace, that.richWorkspace) && lockType == that.lockType && Objects.equals(lockOwner, that.lockOwner) && Objects.equals(lockOwnerDisplayName, that.lockOwnerDisplayName) && Objects.equals(lockOwnerEditor, that.lockOwnerEditor) && Objects.equals(lockToken, that.lockToken);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(remotePath, mimeType, length, creationTimestamp, modifiedTimestamp, uploadTimestamp, etag, permissions, remoteId, size, favorite, encrypted, mountType, ownerId, ownerDisplayName, unreadCommentsCount, hasPreview, note, richWorkspace, isLocked, lockType, lockOwner, lockOwnerDisplayName, lockTimestamp, lockOwnerEditor, lockTimeout, lockToken);
+        result = 31 * result + Arrays.hashCode(sharees);
+        return result;
+    }
+
+    public String getRemotePath() {
+        return remotePath;
+    }
+
+    public void setRemotePath(String remotePath) {
+        this.remotePath = remotePath;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    public long getLength() {
+        return length;
+    }
+
+    public void setLength(long length) {
+        this.length = length;
+    }
+
+    public long getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setCreationTimestamp(long creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    public long getModifiedTimestamp() {
+        return modifiedTimestamp;
+    }
+
+    public void setModifiedTimestamp(long modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
+    }
+
+    public long getUploadTimestamp() {
+        return uploadTimestamp;
+    }
+
+    public void setUploadTimestamp(long uploadTimestamp) {
+        this.uploadTimestamp = uploadTimestamp;
+    }
+
+    public String getEtag() {
+        return etag;
+    }
+
+    public void setEtag(String etag) {
+        this.etag = etag;
+    }
+
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+
+    public String getRemoteId() {
+        return remoteId;
+    }
+
+    public void setRemoteId(String remoteId) {
+        this.remoteId = remoteId;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public boolean isEncrypted() {
+        return encrypted;
+    }
+
+    public void setEncrypted(boolean encrypted) {
+        this.encrypted = encrypted;
+    }
+
+    public WebdavEntry.MountType getMountType() {
+        return mountType;
+    }
+
+    public void setMountType(WebdavEntry.MountType mountType) {
+        this.mountType = mountType;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getOwnerDisplayName() {
+        return ownerDisplayName;
+    }
+
+    public void setOwnerDisplayName(String ownerDisplayName) {
+        this.ownerDisplayName = ownerDisplayName;
+    }
+
+    public int getUnreadCommentsCount() {
+        return unreadCommentsCount;
+    }
+
+    public void setUnreadCommentsCount(int unreadCommentsCount) {
+        this.unreadCommentsCount = unreadCommentsCount;
+    }
+
+    public boolean isHasPreview() {
+        return hasPreview;
+    }
+
+    public void setHasPreview(boolean hasPreview) {
+        this.hasPreview = hasPreview;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public ShareeUser[] getSharees() {
+        return sharees;
+    }
+
+    public void setSharees(ShareeUser[] sharees) {
+        this.sharees = sharees;
+    }
+
+    public String getRichWorkspace() {
+        return richWorkspace;
+    }
+
+    public void setRichWorkspace(String richWorkspace) {
+        this.richWorkspace = richWorkspace;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public FileLockType getLockType() {
+        return lockType;
+    }
+
+    public void setLockType(FileLockType lockType) {
+        this.lockType = lockType;
+    }
+
+    public String getLockOwner() {
+        return lockOwner;
+    }
+
+    public void setLockOwner(String lockOwner) {
+        this.lockOwner = lockOwner;
+    }
+
+    public String getLockOwnerDisplayName() {
+        return lockOwnerDisplayName;
+    }
+
+    public void setLockOwnerDisplayName(String lockOwnerDisplayName) {
+        this.lockOwnerDisplayName = lockOwnerDisplayName;
+    }
+
+    public long getLockTimestamp() {
+        return lockTimestamp;
+    }
+
+    public void setLockTimestamp(long lockTimestamp) {
+        this.lockTimestamp = lockTimestamp;
+    }
+
+    public String getLockOwnerEditor() {
+        return lockOwnerEditor;
+    }
+
+    public void setLockOwnerEditor(String lockOwnerEditor) {
+        this.lockOwnerEditor = lockOwnerEditor;
+    }
+
+    public long getLockTimeout() {
+        return lockTimeout;
+    }
+
+    public void setLockTimeout(long lockTimeout) {
+        this.lockTimeout = lockTimeout;
+    }
+
+    public String getLockToken() {
+        return lockToken;
+    }
+
+    public void setLockToken(String lockToken) {
+        this.lockToken = lockToken;
+    }
 }
