@@ -97,7 +97,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: test-stable24
+name: test-stable25
 
 steps:
   - name: test
@@ -156,7 +156,7 @@ services:
   - name: server-stable
     image: ghcr.io/nextcloud/continuous-integration-server:latest
     environment:
-      SERVER_VERSION: stable24
+      SERVER_VERSION: stable25
     commands:
       - BRANCH="$SERVER_VERSION" /usr/local/bin/initnc.sh
       - su www-data -c "php /var/www/html/occ log:manage --level warning"

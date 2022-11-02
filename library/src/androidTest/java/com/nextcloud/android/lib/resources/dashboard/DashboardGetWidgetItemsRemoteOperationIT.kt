@@ -27,21 +27,19 @@ import com.owncloud.android.lib.resources.files.CreateFolderRemoteOperation
 import com.owncloud.android.lib.resources.shares.CreateShareRemoteOperation
 import com.owncloud.android.lib.resources.shares.OCShare
 import com.owncloud.android.lib.resources.shares.ShareType
-import com.owncloud.android.lib.resources.status.GetCapabilitiesRemoteOperation
 import com.owncloud.android.lib.resources.status.NextcloudVersion
-import com.owncloud.android.lib.resources.status.OCCapability
 import org.junit.Assert.assertTrue
-import org.junit.Assume.assumeTrue
+import org.junit.Before
 import org.junit.Test
 
 class DashboardGetWidgetItemsRemoteOperationIT : AbstractIT() {
+    @Before
+    fun before() {
+        onlyOnMin(NextcloudVersion.nextcloud_25)
+    }
+
     @Test
     fun getItems() {
-        // only on NC25+
-        val ocCapability = GetCapabilitiesRemoteOperation()
-            .execute(nextcloudClient).singleData as OCCapability
-        assumeTrue(ocCapability.version.isNewerOrEqual(NextcloudVersion.nextcloud_25))
-
         // create folder to have some content
         assertTrue(CreateFolderRemoteOperation("/testFolder", false).execute(client2).isSuccess)
         assertTrue(
