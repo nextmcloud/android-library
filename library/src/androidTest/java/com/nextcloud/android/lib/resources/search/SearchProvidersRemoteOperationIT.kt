@@ -26,13 +26,13 @@ import com.owncloud.android.AbstractIT
 import com.owncloud.android.lib.resources.status.OwnCloudVersion.nextcloud_20
 import org.junit.Assert
 import org.junit.Assert.assertTrue
-import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
 
 class SearchProvidersRemoteOperationIT : AbstractIT() {
-    @Before
+    @BeforeClass
     fun before() {
-        onlyOnMin(nextcloud_20)
+        requireServerVersion(nextcloud_20)
     }
 
     @Test

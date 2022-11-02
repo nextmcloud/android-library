@@ -282,7 +282,7 @@ public abstract class AbstractIT {
         return temp;
     }
 
-    public static void onlyOnMin(OwnCloudVersion version) {
+    public static void requireServerVersion(OwnCloudVersion version) {
         OCCapability ocCapability = (OCCapability) new GetCapabilitiesRemoteOperation()
                 .execute(nextcloudClient).getSingleData();
         assumeTrue(ocCapability.getVersion().isNewerOrEqual(version));

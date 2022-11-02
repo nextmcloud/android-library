@@ -29,14 +29,10 @@ import com.owncloud.android.lib.resources.shares.OCShare
 import com.owncloud.android.lib.resources.shares.ShareType
 import com.owncloud.android.lib.resources.status.NextcloudVersion
 import org.junit.Assert.assertTrue
-import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
 
 class DashboardGetWidgetItemsRemoteOperationIT : AbstractIT() {
-    @Before
-    fun before() {
-        onlyOnMin(NextcloudVersion.nextcloud_25)
-    }
 
     @Test
     fun getItems() {
@@ -80,5 +76,11 @@ class DashboardGetWidgetItemsRemoteOperationIT : AbstractIT() {
 
     companion object {
         const val LIMIT_SIZE = 14
+
+        @BeforeClass
+        @JvmStatic
+        fun before() {
+            requireServerVersion(NextcloudVersion.nextcloud_25)
+        }
     }
 }

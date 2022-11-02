@@ -31,13 +31,13 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
-import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
 
 class UnifiedSearchRemoteOperationIT : AbstractIT() {
-    @Before
+    @BeforeClass
     fun before() {
-        onlyOnMin(OwnCloudVersion.nextcloud_20)
+        requireServerVersion(OwnCloudVersion.nextcloud_20)
     }
 
     @Test

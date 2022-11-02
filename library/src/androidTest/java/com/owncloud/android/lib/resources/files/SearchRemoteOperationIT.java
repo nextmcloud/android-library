@@ -417,7 +417,7 @@ public class SearchRemoteOperationIT extends AbstractIT {
 
     @Test
     public void testGallerySearch() throws IOException {
-        onlyOnMin(OwnCloudVersion.nextcloud_18);
+        requireServerVersion(OwnCloudVersion.nextcloud_18);
 
         for (int i = 0; i < 10; i++) {
             String filePath = createFile("image" + i);

@@ -35,7 +35,7 @@ import org.junit.Test
 class GetHoverCardRemoteOperationIT : AbstractIT() {
     @Before
     fun before() {
-        onlyOnMin(nextcloud_23)
+        requireServerVersion(nextcloud_23)
     }
 
     @Test

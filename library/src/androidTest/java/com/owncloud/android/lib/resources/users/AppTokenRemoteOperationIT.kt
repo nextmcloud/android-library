@@ -77,7 +77,7 @@ class AppTokenRemoteOperationIT : AbstractIT() {
 
     @Test
     fun deleteAppPassword() {
-        onlyOnMin(OwnCloudVersion.nextcloud_17)
+        requireServerVersion(OwnCloudVersion.nextcloud_17)
 
         val arguments = InstrumentationRegistry.getArguments()
         val username: String = arguments.getString("TEST_SERVER_USERNAME", "")

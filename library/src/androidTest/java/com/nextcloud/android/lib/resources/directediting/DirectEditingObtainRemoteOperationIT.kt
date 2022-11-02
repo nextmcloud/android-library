@@ -38,7 +38,7 @@ import org.junit.Test
 class DirectEditingObtainRemoteOperationIT : AbstractIT() {
     @Before
     fun before() {
-        onlyOnMin(OwnCloudVersion.nextcloud_18)
+        requireServerVersion(OwnCloudVersion.nextcloud_18)
     }
 
     @Test

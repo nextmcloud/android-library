@@ -36,7 +36,7 @@ class StatusIT : AbstractIT() {
 
     @Before
     fun before() {
-        onlyOnMin(OwnCloudVersion.nextcloud_20)
+        requireServerVersion(OwnCloudVersion.nextcloud_20)
     }
 
     @Test

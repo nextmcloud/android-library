@@ -46,7 +46,7 @@ import java.io.IOException;
 public class DirectEditingOpenFileRemoteOperationIT extends AbstractIT {
     @BeforeClass
     public static void beforeClass() {
-        onlyOnMin(OwnCloudVersion.nextcloud_18);
+        requireServerVersion(OwnCloudVersion.nextcloud_18);
     }
 
     @Test

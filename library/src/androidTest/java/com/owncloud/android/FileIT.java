@@ -26,6 +26,9 @@
  */
 package com.owncloud.android;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import android.net.Uri;
 
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
@@ -43,10 +46,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Tests related to file operations
@@ -163,7 +162,7 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testShareToGroupSharees() {
-        onlyOnMin(OwnCloudVersion.nextcloud_17);
+        requireServerVersion(OwnCloudVersion.nextcloud_17);
 
         // create & verify folder
         String path = "/testFolder/";
@@ -200,7 +199,7 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testOneSharees() {
-        onlyOnMin(OwnCloudVersion.nextcloud_17);
+        requireServerVersion(OwnCloudVersion.nextcloud_17);
 
         // create & verify folder
         String path = "/testFolder/";
@@ -237,7 +236,7 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testTwoShareesOnParent() {
-        onlyOnMin(OwnCloudVersion.nextcloud_17);
+        requireServerVersion(OwnCloudVersion.nextcloud_17);
 
         // create & verify folder
         String path = "/testFolder/";
@@ -287,7 +286,7 @@ public class FileIT extends AbstractIT {
 
     @Test
     public void testTwoSharees() {
-        onlyOnMin(OwnCloudVersion.nextcloud_17);
+        requireServerVersion(OwnCloudVersion.nextcloud_17);
 
         // create & verify folder
         String path = "/testFolder/";

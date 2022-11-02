@@ -40,7 +40,7 @@ import org.junit.Test;
 public class DirectEditingCreateFileRemoteOperationIT extends AbstractIT {
     @BeforeClass
     public static void beforeClass() {
-        onlyOnMin(OwnCloudVersion.nextcloud_18);
+        requireServerVersion(OwnCloudVersion.nextcloud_18);
     }
 
     @Test
