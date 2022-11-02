@@ -30,10 +30,6 @@ import org.junit.BeforeClass
 import org.junit.Test
 
 class SearchProvidersRemoteOperationIT : AbstractIT() {
-    @BeforeClass
-    fun before() {
-        requireServerVersion(nextcloud_20)
-    }
 
     @Test
     fun getSearchProviders() {
@@ -46,5 +42,13 @@ class SearchProvidersRemoteOperationIT : AbstractIT() {
         assertTrue(providers.providers.isNotEmpty())
         Assert.assertNotNull(providers.providers.find { it.name == "Files" })
         Assert.assertNull(providers.providers.find { it.name == "RandomSearchProvider" })
+    }
+
+    companion object {
+        @BeforeClass
+        @JvmStatic
+        fun before() {
+            requireServerVersion(nextcloud_20)
+        }
     }
 }

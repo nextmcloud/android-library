@@ -35,11 +35,6 @@ import org.junit.BeforeClass
 import org.junit.Test
 
 class UnifiedSearchRemoteOperationIT : AbstractIT() {
-    @BeforeClass
-    fun before() {
-        requireServerVersion(OwnCloudVersion.nextcloud_20)
-    }
-
     @Test
     fun filesSearchEmptySearch() {
         val result = UnifiedSearchRemoteOperation("files", "").execute(nextcloudClient)
@@ -96,5 +91,13 @@ class UnifiedSearchRemoteOperationIT : AbstractIT() {
         assertTrue(data.name == "Files")
         assertTrue(data.entries.isNotEmpty())
         assertNotNull(data.entries.find { it.title == "test Folder" })
+    }
+
+    companion object {
+        @BeforeClass
+        @JvmStatic
+        fun before() {
+            requireServerVersion(OwnCloudVersion.nextcloud_20)
+        }
     }
 }
