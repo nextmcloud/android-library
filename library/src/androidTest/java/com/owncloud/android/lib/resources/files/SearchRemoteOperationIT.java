@@ -222,7 +222,14 @@ public class SearchRemoteOperationIT extends AbstractIT {
         assertEquals(2, result.getResultData().size());
 
         assertEquals(remotePath, result.getResultData().get(0).getRemotePath());
-        assertEquals(sharedRemotePath, result.getResultData().get(1).getRemotePath());
+
+        if (capability.getVersion().isNewerOrEqual(OwnCloudVersion.nextcloud_17)) {
+            assertEquals(sharedRemotePath, result.getResultData().get(1).getRemotePath());
+        } else {
+            // on NC16 we have a bug that each file ends with "/"
+            sharedRemotePath += "/";
+            assertEquals(sharedRemotePath, result.getResultData().get(1).getRemotePath());
+        }
     }
 
     /**
