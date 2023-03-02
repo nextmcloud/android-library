@@ -25,6 +25,9 @@
 
 package com.owncloud.android.lib.resources.shares;
 
+import static com.owncloud.android.lib.resources.shares.ShareUtils.INCLUDE_TAGS;
+import static com.owncloud.android.lib.resources.shares.ShareUtils.SHARING_API_PATH;
+
 import com.owncloud.android.lib.common.OwnCloudClient;
 import com.owncloud.android.lib.common.operations.RemoteOperation;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
@@ -75,7 +78,7 @@ public class GetShareRemoteOperation extends RemoteOperation<List<OCShare>> {
 
                 // Parse xml response and obtain the list of shares
                 ShareToRemoteOperationResultParser parser = new ShareToRemoteOperationResultParser(
-                    new ShareXMLParser()
+                        new ShareXMLParser()
                 );
                 parser.setOneOrMoreSharesRequired(true);
                 parser.setServerBaseUri(client.getBaseUri());

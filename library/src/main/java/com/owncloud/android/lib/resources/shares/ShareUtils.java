@@ -26,7 +26,7 @@ package com.owncloud.android.lib.resources.shares;
 
 /**
  * Contains Constants for Share Operation
- * 
+ *
  * @author masensio
  *
  */

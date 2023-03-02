@@ -61,10 +61,11 @@ class NextcloudUriDelegate(baseUri: Uri, var userId: String?) : NextcloudUriProv
         get() = Uri.parse(baseUri.toString() + AccountUtils.WEBDAV_PATH_9_0)
 
     override fun getFilesDavUri(path: String): String {
-        return "$filesDavUri/${WebdavUtils.encodePath(path)}"
+        // encodePath already adds leading slash if needed
+        return "$filesDavUri${WebdavUtils.encodePath(path)}"
     }
 
-    override fun getCommentsUri(fileId: String): String {
+    override fun getCommentsUri(fileId: Long): String {
         return "$davUri/comments/files/$fileId"
     }
 }

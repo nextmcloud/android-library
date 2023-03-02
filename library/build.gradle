@@ -10,7 +10,7 @@ buildscript {
         classpath 'com.hiya:jacoco-android:0.2'
         classpath 'com.github.spotbugs.snom:spotbugs-gradle-plugin:5.0.13'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.22.0"
         classpath "org.jacoco:org.jacoco.core:$jacoco_version"
         classpath "org.jacoco:org.jacoco.report:$jacoco_version"
         classpath "org.jacoco:org.jacoco.agent:$jacoco_version"
@@ -45,9 +45,9 @@ configurations {
 
 dependencies {
     implementation 'org.apache.jackrabbit:jackrabbit-webdav:2.13.5'
-    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
+    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
     implementation 'com.gitlab.bitfireAT:dav4jvm:2.1.3' // in transition phase, we use old and new libs
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
     implementation 'androidx.annotation:annotation:1.5.0'
     compileOnly 'com.google.code.findbugs:annotations:3.0.1u2'
 
@@ -63,20 +63,20 @@ dependencies {
 
     // dependencies for tests
     testImplementation "junit:junit:$junit_version"
-    testImplementation 'org.mockito:mockito-core:4.8.1'
+    testImplementation 'org.mockito:mockito-core:5.0.0'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 
     // dependencies for instrumented tests
     // JUnit4 Rules
     androidTestImplementation "junit:junit:$junit_version"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
 
     // Android JUnit Runner
-    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
 
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
     androidTestImplementation 'commons-io:commons-io:2.11.0'
 }
 
@@ -103,7 +103,7 @@ tasks.withType(SpotBugsTask){task ->
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     buildTypes {
         debug {
@@ -121,7 +121,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArgument "TEST_SERVER_URL", "${NC_TEST_SERVER_BASEURL}"

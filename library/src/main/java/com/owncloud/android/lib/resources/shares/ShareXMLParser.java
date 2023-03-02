@@ -77,14 +77,13 @@ public class ShareXMLParser {
 	private static final String NODE_PASSWORD = "password";
 	private static final String NODE_SHARE_WITH_DISPLAY_NAME = "share_with_displayname";
 	private static final String NODE_NOTE = "note";
-    private static final String NODE_HIDE_DOWNLOAD = "hide_download";
-    private static final String NODE_UID_OWNER = "uid_owner";
+	private static final String NODE_HIDE_DOWNLOAD = "hide_download";
+	private static final String NODE_UID_OWNER = "uid_owner";
 	private static final String NODE_LABEL = "label";
 	private static final String NODE_HAS_PREVIEW = "has_preview";
 	private static final String NODE_MIMETYPE = "mimetype";
 	private static final String NODE_DISPLAYNAME_FILE_OWNER = "displayname_file_owner";
 	private static final String NODE_TAGS = "tags";
-
 	private static final String NODE_URL = "url";
 
 	private static final String TAG_FAVORITE = "_$!<Favorite>";
@@ -94,7 +93,7 @@ public class ShareXMLParser {
 	private static final String EMPTY_LINE = "\n";
 
 	private static final String TRUE = "1";
-	
+
 	private static final int SUCCESS = 100;
 	private static final int OK = 200;
 	private static final int ERROR_WRONG_PARAMETER = 400;
@@ -169,7 +168,6 @@ public class ShareXMLParser {
 			parser.setInput(is, null);
 			parser.nextTag();
 			return readOCS(parser);
-
 		} finally {
 			is.close();
 		}
@@ -423,6 +421,7 @@ public class ShareXMLParser {
 				case NODE_DISPLAYNAME_FILE_OWNER:
 					share.setOwnerDisplayName(readNode(parser, NODE_DISPLAYNAME_FILE_OWNER));
 					break;
+
 				case NODE_TAGS:
 					List<String> tags = readArrayNode(parser);
 					for (String tag : tags) {
@@ -472,9 +471,10 @@ public class ShareXMLParser {
 		parser.require(XmlPullParser.END_TAG, ns, node);
 		return value;
 	}
-	
+
 	/**
 	 * Read the text from a node
+	 *
 	 * @param parser
 	 * @return Text of the node
 	 * @throws IOException
@@ -518,6 +518,7 @@ public class ShareXMLParser {
 
 	/**
 	 * Skip tags in parser procedure
+	 *
 	 * @param parser
 	 * @throws XmlPullParserException
 	 * @throws IOException

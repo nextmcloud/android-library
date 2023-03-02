@@ -33,6 +33,7 @@ import com.owncloud.android.lib.resources.files.FileUtils;
 import java.io.Serializable;
 
 import androidx.annotation.NonNull;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -277,5 +278,4 @@ public class OCShare implements Parcelable, Serializable {
         dest.writeString(ownerDisplayName);
         dest.writeInt(isFavorite ? 1 : 0);
     }
-
 }
