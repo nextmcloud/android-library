@@ -298,7 +298,7 @@ public class GetSharesRemoteOperationIT extends AbstractIT {
                                                                                            false,
                                                                                            "",
                                                                                            OCShare.MAXIMUM_PERMISSIONS_FOR_FOLDER,
-                                                                                           true)
+                                                                                           true, "")
                 .execute(client);
 
         assertTrue(createResult.isSuccess());
@@ -328,7 +328,7 @@ public class GetSharesRemoteOperationIT extends AbstractIT {
                                                                                            false,
                                                                                            "",
                                                                                            OCShare.MAXIMUM_PERMISSIONS_FOR_FOLDER,
-                                                                                           true)
+                                                                                           true, "")
                 .execute(client);
 
         assertTrue(createResult.isSuccess());
